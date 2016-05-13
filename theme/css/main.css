@@ -18,7 +18,7 @@
 /* Body */
 body {
     background: #FDF6E3;
-    color: #8A887B;
+    color: #657b83;
     font-size: 16px;
     font-family: 'Crimson Text', 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     /*line-height: 1.429;*/
@@ -45,17 +45,18 @@ code{
 }
 
 /* Headings */
-h1 {font-size: 2em }
-h2 {font-size: 1.571em}	/* 22px */
-h3 {font-size: 1.429em}	/* 20px */
-h4 {font-size: 1.286em}	/* 18px */
-h5 {font-size: 1.143em}	/* 16px */
-h6 {font-size: 1em}		/* 14px */
+h1 {font-size: 1.571em}}
+h2 {font-size: 1.429em}	/* 20px */
+h3 {font-size: 1.286em}	/* 18px */
+h4 {font-size: 1.143em}	/* 16px */
+h5 {font-size: 1em}	/* 14px */
+h6 {font-size: 1em}	/* 14px */
 
 h1, h2, h3, h4, h5, h6 {
     text-shadow:0px 0px 1px #BFBFBF;
 	font-weight: normal;
     font-style: normal;
+    color: #657b83;
 	line-height: 50px;
 	/*margin-bottom: .8em;*/
     font-family: 'Crimson Text', 'Yanone Kaffeesatz', arial, serif;
@@ -67,7 +68,7 @@ h1 {
 
 h3, h4, h5, h6 { margin-top: .8em; }
 	
-hr { border: 1px dotted #8A887B; }
+hr { border: 1px dotted #657b83; }
 
 /* Anchors */
 a {outline: 0;}
@@ -219,7 +220,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 		/*height: 30px;*/
         padding: 5px;
 		text-decoration: none;
-        color: #8A887B;
+        color: #657b83;
 	}
 	#banner nav a:hover, #banner nav a:active,
 	#banner nav .active a:link, #banner nav .active a:visited {
@@ -262,7 +263,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 }
 #featured figure img {display: block; float: right;}
 
-#featured h2 {color: inherit; font-size: 1.714em; margin-bottom: 0.333em;}
+#featured h2 {color: #586e75; font-size: 1.714em; margin-bottom: 0.333em;}
 #featured h3 {font-size: 1.429em; margin-bottom: .5em;}
 
 #featured h3 a:link, #featured h3 a:visited {color: #000305; text-decoration: none;}
@@ -291,7 +292,7 @@ img.left, figure.left {float: left; margin: 0 2em 2em 0;}
 #extras ul {list-style: none; margin: 0;}
 #extras li {border-bottom: 1px solid #fff;}
 #extras h2 {
-	color: inherit;
+	color: #586e75;
 	font-size: 1.429em;
 	margin-bottom: .25em;
 	padding: 0 3px;
@@ -380,7 +381,7 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 #content > .hentry {padding: 1em 0;}
 .hentry img{display : none ;}
 .entry-title {text-align:center;font-size: 31px; font-style:italic; margin-bottom: 10px; margin-top: 0;}
-.entry-title a:link, .entry-title a:visited {text-decoration: none; color: #8A887B;}
+.entry-title a:link, .entry-title a:visited {text-decoration: none; color: #657b83;}
 .entry-title a:visited {background-color: #fff;}
 
 .hentry .post-info * {font-style: normal;}
