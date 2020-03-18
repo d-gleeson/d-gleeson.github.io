@@ -1,102 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>There be dragons</title>
-    <link rel="shortcut icon" type="image/png" href="/favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="There be dragons Full Atom Feed" />
-    <link rel="stylesheet" href="/theme/css/screen.css" type="text/css" />
-    <link rel="stylesheet" href="/theme/css/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
-    <meta name="generator" content="Pelican" />
+  <style>
+    .vega-actions a {
+        margin-right: 12px;
+        color: #757575;
+        font-weight: normal;
+        font-size: 13px;
+    }
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@3.4.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@4"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li class="selected"><a href="">Home</a></li>
-            </ul>
-        </nav>
-        <div class="header_box">
-            <h1><a href="">There be dragons</a></h1>
-        </div>
-    </header>
-    <div id="wrapper">
-        <div id="content">            <h4 class="date">May 12, 2016</h4>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"width": 400, "height": 300}, "mark": {"tooltip": null}}, "data": {"name": "data-aaed162e5f55523489f6ed7e8715c7fb"}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "variable"}, "x": {"type": "temporal", "field": "index"}, "y": {"type": "quantitative", "field": "value"}}, "selection": {"selector003": {"type": "interval", "bind": "scales", "encodings": ["x", "y"]}}, "$schema": "https://vega.github.io/schema/vega-lite/v3.4.0.json", "datasets": {"data-aaed162e5f55523489f6ed7e8715c7fb": [{"index": "2020-01-22T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-23T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-24T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-25T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-26T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-27T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-28T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-29T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-30T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-01-31T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-01T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-02T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-03T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-04T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-05T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-06T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-07T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-08T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-09T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-10T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-11T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-12T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-13T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-14T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-15T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-16T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-17T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-18T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-19T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-20T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-21T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-22T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-23T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-24T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-25T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-26T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-27T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-28T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-02-29T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-03-01T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-03-02T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-03-03T00:00:00", "variable": "Poland", "value": 0}, {"index": "2020-03-04T00:00:00", "variable": "Poland", "value": 1}, {"index": "2020-03-05T00:00:00", "variable": "Poland", "value": 1}, {"index": "2020-03-06T00:00:00", "variable": "Poland", "value": 5}, {"index": "2020-03-07T00:00:00", "variable": "Poland", "value": 5}, {"index": "2020-03-08T00:00:00", "variable": "Poland", "value": 11}, {"index": "2020-03-09T00:00:00", "variable": "Poland", "value": 16}, {"index": "2020-03-10T00:00:00", "variable": "Poland", "value": 22}, {"index": "2020-03-11T00:00:00", "variable": "Poland", "value": 31}, {"index": "2020-03-12T00:00:00", "variable": "Poland", "value": 49}, {"index": "2020-03-13T00:00:00", "variable": "Poland", "value": 68}, {"index": "2020-03-14T00:00:00", "variable": "Poland", "value": 103}, {"index": "2020-03-15T00:00:00", "variable": "Poland", "value": 119}, {"index": "2020-03-16T00:00:00", "variable": "Poland", "value": 177}, {"index": "2020-03-17T00:00:00", "variable": "Poland", "value": 238}, {"index": "2020-01-22T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-23T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-24T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-25T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-26T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-27T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-28T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-29T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-30T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-01-31T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-01T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-02T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-03T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-04T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-05T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-06T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-07T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-08T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-09T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-10T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-11T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-12T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-13T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-14T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-15T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-16T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-17T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-18T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-19T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-20T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-21T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-22T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-23T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-24T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-25T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-26T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-27T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-28T00:00:00", "variable": "Ireland", "value": 0}, {"index": "2020-02-29T00:00:00", "variable": "Ireland", "value": 1}, {"index": "2020-03-01T00:00:00", "variable": "Ireland", "value": 1}, {"index": "2020-03-02T00:00:00", "variable": "Ireland", "value": 1}, {"index": "2020-03-03T00:00:00", "variable": "Ireland", "value": 2}, {"index": "2020-03-04T00:00:00", "variable": "Ireland", "value": 6}, {"index": "2020-03-05T00:00:00", "variable": "Ireland", "value": 6}, {"index": "2020-03-06T00:00:00", "variable": "Ireland", "value": 18}, {"index": "2020-03-07T00:00:00", "variable": "Ireland", "value": 18}, {"index": "2020-03-08T00:00:00", "variable": "Ireland", "value": 19}, {"index": "2020-03-09T00:00:00", "variable": "Ireland", "value": 21}, {"index": "2020-03-10T00:00:00", "variable": "Ireland", "value": 34}, {"index": "2020-03-11T00:00:00", "variable": "Ireland", "value": 43}, {"index": "2020-03-12T00:00:00", "variable": "Ireland", "value": 43}, {"index": "2020-03-13T00:00:00", "variable": "Ireland", "value": 90}, {"index": "2020-03-14T00:00:00", "variable": "Ireland", "value": 129}, {"index": "2020-03-15T00:00:00", "variable": "Ireland", "value": 129}, {"index": "2020-03-16T00:00:00", "variable": "Ireland", "value": 169}, {"index": "2020-03-17T00:00:00", "variable": "Ireland", "value": 223}, {"index": "2020-01-22T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-23T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-24T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-25T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-26T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-27T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-28T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-29T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-30T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-01-31T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-01T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-02T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-03T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-04T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-05T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-06T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-07T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-08T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-09T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-10T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-11T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-12T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-13T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-14T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-15T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-16T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-17T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-18T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-19T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-20T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-21T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-22T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-23T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-24T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-25T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-26T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-27T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-28T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-02-29T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-03-01T00:00:00", "variable": "Portugal", "value": 0}, {"index": "2020-03-02T00:00:00", "variable": "Portugal", "value": 2}, {"index": "2020-03-03T00:00:00", "variable": "Portugal", "value": 2}, {"index": "2020-03-04T00:00:00", "variable": "Portugal", "value": 5}, {"index": "2020-03-05T00:00:00", "variable": "Portugal", "value": 8}, {"index": "2020-03-06T00:00:00", "variable": "Portugal", "value": 13}, {"index": "2020-03-07T00:00:00", "variable": "Portugal", "value": 20}, {"index": "2020-03-08T00:00:00", "variable": "Portugal", "value": 30}, {"index": "2020-03-09T00:00:00", "variable": "Portugal", "value": 30}, {"index": "2020-03-10T00:00:00", "variable": "Portugal", "value": 41}, {"index": "2020-03-11T00:00:00", "variable": "Portugal", "value": 59}, {"index": "2020-03-12T00:00:00", "variable": "Portugal", "value": 59}, {"index": "2020-03-13T00:00:00", "variable": "Portugal", "value": 112}, {"index": "2020-03-14T00:00:00", "variable": "Portugal", "value": 169}, {"index": "2020-03-15T00:00:00", "variable": "Portugal", "value": 245}, {"index": "2020-03-16T00:00:00", "variable": "Portugal", "value": 331}, {"index": "2020-03-17T00:00:00", "variable": "Portugal", "value": 448}]}};
+      var embedOpt = {"mode": "vega-lite"};
 
-            <article class="post">
-                <h2 class="title">
-                    <a href="/i-dont-know-any-more.html" rel="bookmark" title="Permanent Link to &quot;I don't know any more&quot;">I don't know any more</a>
-                </h2>
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
 
-                <h1>Austin pork belly</h1>
-<p>3 wolf moon pitportland leggings chambray flannel marfa fanny bun everyday carry, tumblr aesthetic mumblecore craft beer echo park asymmetrical. Kitsch fixie farm-to-table freegan salvia four dollar toast keytar literally, schlitz health goth flannel pinterest. Cronut tofu yuccie, lo-fi everyday carry chartreuse kickstarter street art vinyl banjo whatever locavore seitan meh organic. Tofu ethical asymmetrical keffiyeh, locavore fashion axe pop-up. Typewriter retro neutra, cronut bushwick polaroid slow-carb selvage YOLO. Keytar hoodie deep v, tote bag photo booth poutine tumblr lumbersexual readymade.</p>
-<h2>Man braid williamsburg man bun synth ethical</h2>
-<p>Messenger bag pug keytar, mumblecore forage sriracha crucifixPBR&amp;B tote bag pinterest, 3 wolf moon +1 brunch bicycle rights pour-over tousled fanny pack trust fund. Messenger bag iPhone mlkshk you probably haven't heard of them, XOXO pour-over ennui kombucha. Pour-over sartorial you probably haven't heard of them umami vegan chillwave, cronut ennui affogato humblebrag flexitarian blog fixie 3 wolf moon twee. Meggings ugh before they sold out humblebrag vinyl. Photo booth occupy chillwave bitters keytar authentic.</p>
-<h2>Paleo pitchfork wayfarers</h2>
-<p>Thundercats dreamcatcher authentic tote bag cardigan. Cred shaPBR&amp;B sriracha synth, intelligentsia thundercats banjo photo booth chambray tilde vegan asymmetrical next level. Chartreuse irony bicycle rights wolf kitsch, crucifix hella blue bottle venmo. Taxidermy ugh asymmetrical next level locavore, truffaut umami chicharrones health goth. Blue bottle tumblr twee irony, green juice semiotics bushwick XOXO disrupt flannel ugh keytar williamsburg brunch heirloom. Bushwick seitan farm-to-table, lumbersexual put a bird on it slow-carb semiotics venmo fanny pack plaid normcore godard authentic.</p>
-<h3>Gluten-free godard fap</h3>
-<p>Synth migas heirloom truffaut blog cray. Wayfarers cold-pressed crucifix, lo-fi VHS drinking vinegar food truck chicharrones offal cliche +1. Tattooed selfies brunch tote bag fixie, kogi waistcoat shabby chic helvetica 90's. Seitan trust fund aesthetic, kale chips single-origin coffee chartreuse meggings 3 wolf moon semiotics waistcoat. Vice beard meditation, pinterest hella readymade butcher pabst chia taxidermy intelligentsia. Hella butcher chicharrones sustainable. Trust fund jean shorts lomo, yr mustache tousled poutine forage typewriter cray beard hashtag iPhone chia quinoa.</p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="/i-dont-know-any-more.html">posted at 00:00</a>
-                    &nbsp;&middot;&nbsp;<a href="/category/articles.html" rel="tag">Articles</a>
-                </div>
-		<a href="/i-dont-know-any-more.html#disqus_thread">Click to read and post comments</a>
-            </article>            <h4 class="date">May 11, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="/still-knocking-around-in-the-same-old-hole.html" rel="bookmark" title="Permanent Link to &quot;Still knocking around in the same old hole&quot;">Still knocking around in the same old hole</a>
-                </h2>
-
-                <h1>What is this all about?</h1>
-<p>I really have no idea. I'll let you know when I do.</p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="/still-knocking-around-in-the-same-old-hole.html">posted at 00:00</a>
-                    &nbsp;&middot;&nbsp;<a href="/category/about.html" rel="tag">About</a>
-                </div>
-		<a href="/still-knocking-around-in-the-same-old-hole.html#disqus_thread">Click to read and post comments</a>
-            </article>            <h4 class="date">May 10, 2016</h4>
-
-            <article class="post">
-                <h2 class="title">
-                    <a href="/where-are-my-knees.html" rel="bookmark" title="Permanent Link to &quot;Where are my knees?&quot;">Where are my knees?</a>
-                </h2>
-
-                <h1>Austin pork belly</h1>
-<p>3 wolf moon pitchfork brooklyn, meh portland leggings chambray flannel marfa fanny pack. Occupy man bun everyday carry, tumblr aesthetic mumblecore craft beer echo park asymmetrical. Kitsch fixie farm-to-table freegan salvia four dollar toast keytar literally, schlitz health goth flannel pinterest. Cronut tofu yuccie, lo-fi everyday carry chartreuse kickstarter street art vinyl banjo whatever locavore seitan meh organic. Tofu ethical asymmetrical keffiyeh, locavore fashion axe pop-up. Typewriter retro neutra, cronut bushwick polaroid slow-carb selvage YOLO. Keytar hoodie deep v, tote bag photo booth poutine tumblr lumbersexual readymade.</p>
-<h2>Man braid williamsburg man bun synth ethical</h2>
-<p>Messenger bag pug keytar, mumblecore forage sriracha crucifix blog seitan gentrify bushwick. Shabby chic PBR&amp;B tote bag pinterest, 3 wolf moon +1 brunch bicycle rights pour-over tousled fanny pack trust fund. Messenger bag iPhone mlkshk you probably haven't heard of them, XOXO pour-over ennui kombucha. Pour-over sartorial you probably haven't heard of them umami vegan chillwave, cronut ennui affogato humblebrag flexitarian blog fixie 3 wolf moon twee. Meggings ugh before they sold out humblebrag vinyl. Photo booth occupy chillwave bitters keytar authentic.</p>
-<h2>Paleo pitchfork wayfarers</h2>
-<p>Thundercats dreamcatcher authentic tote bag cardigan. Cred shabby chic tattooed salvia, trust fund celiac artisan. Roof party PBR&amp;B sriracha synth, intelligentsia thundercats banjo photo booth chambray tilde vegan asymmetrical next level. Chartreuse irony bicycle rights wolf kitsch, crucifix hella blue bottle venmo. Taxidermy ugh asymmetrical next level locavore, truffaut umami chicharrones health goth. Blue bottle tumblr twee irony, green juice semiotics bushwick XOXO disrupt flannel ugh keytar williamsburg brunch heirloom. Bushwick seitan farm-to-table, lumbersexual put a bird on it slow-carb semiotics venmo fanny pack plaid normcore godard authentic.</p>
-<h3>Gluten-free godard fap</h3>
-<p>Synth migas heirloom truffaut blog cray. Wayfarers cold-pressed crucifix, lo-fi VHS drinking vinegar food truck chicharrones offal cliche +1. Tattooed selfies brunch tote bag fixie, kogi waistcoat shabby chic helvetica 90's. Seitan trust fund aesthetic, kale chips single-origin coffee chartreuse meggings 3 wolf moon semiotics waistcoat. Vice beard meditation, pinterest hella readymade butcher pabst chia taxidermy intelligentsia. Hella butcher chicharrones sustainable. Trust fund jean shorts lomo, yr mustache tousled poutine forage typewriter cray beard hashtag iPhone chia quinoa.</p>
-                <div class="clear"></div>
-
-                <div class="info">
-                    <a href="/where-are-my-knees.html">posted at 00:00</a>
-                    &nbsp;&middot;&nbsp;<a href="/category/articles.html" rel="tag">Articles</a>
-                </div>
-		<a href="/where-are-my-knees.html#disqus_thread">Click to read and post comments</a>
-            </article>
-
-            <div class="clear"></div>
-            <footer>
-                <p>
-                <a href="https://github.com/jody-frankowski/blue-penguin">Blue Penguin</a> Theme
-                &middot;
-                Powered by <a href="http://getpelican.com">Pelican</a>
-                &middot;
-                <a href="/feeds/all.atom.xml" rel="alternate">Atom Feed</a>
-            </footer>
-        </div>
-        <div class="clear"></div>
-    </div>
+  </script>
 </body>
 </html>
