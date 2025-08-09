@@ -96,22 +96,39 @@ function nextQuestion() {
 }
 
 function showSummary() {
-  const correctCount = sessionAnswers.filter(a => a.correct === 1).length;
+  const correctCount = sessionAnswers.filter(a => a.isCorrect).length;
   const total = questions.length;
 
+  // Create summary HTML
   let summaryHTML = `<h3>Session Complete! ✅ ${correctCount} / ${total} correct.</h3>`;
-  summaryHTML += `<button id="exportResults">Export Results</button>`;
+  summaryHTML += `<table border="1" cellpadding="5" cellspacing="0" style="margin-top:10px; border-collapse: collapse; width: 100%;">
+                    <tr>
+                      <th>Question</th>
+                      <th>Your Answer</th>
+                      <th>Correct Answer</th>
+                      <th>Result</th>
+                    </tr>`;
+  
+  sessionAnswers.forEach(entry => {
+    summaryHTML += `<tr>
+                      <td>${entry.question}</td>
+                      <td>${entry.userAnswer}</td>
+                      <td>${entry.correctAnswer}</td>
+                      <td style="text-align:center;">${entry.isCorrect ? '✅' : '❌'}</td>
+                    </tr>`;
+  });
 
+  summaryHTML += `</table>`;
+
+  // Replace main container content
   const container = document.querySelector('.container');
   container.innerHTML = summaryHTML + `<button id="restart">Start Again</button>`;
-
   mergeSessionIntoHistory();
   saveHistory();
 
-  document.getElementById('restart').addEventListener('click', restartQuiz);
-  document.getElementById('exportResults').addEventListener('click', exportResults);
 
-  state = "summary";
+  // Add restart listener again (since we replaced HTML)
+  document.getElementById('restart').addEventListener('click', restartQuiz);
 }
 
 function mergeSessionIntoHistory() {
