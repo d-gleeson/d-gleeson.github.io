@@ -1,14 +1,10 @@
 let questions = [];
 let currentIndex = 0;
-let sessionAnswers = []; // [{ id, correct, timestamp }]
-let fullHistory = []; // Loaded from localStorage or initialized empty
+let sessionAnswers = [];
+let fullHistory = [];
+let state = "answering"; // "answering" | "feedback" | "summary"
 
-const questionEl = document.getElementById('question');
-const answerInput = document.getElementById('answer');
-const submitBtn = document.getElementById('submitAnswer');
-const nextBtn = document.getElementById('nextQuestion');
-const feedbackEl = document.getElementById('feedback');
-const restartBtn = document.getElementById('restart');
+let questionEl, answerInput, submitBtn, nextBtn, feedbackEl, restartBtn;
 
 async function loadQuestions() {
   try {
@@ -18,7 +14,7 @@ async function loadQuestions() {
     loadHistory();
     startSession();
   } catch (err) {
-    questionEl.textContent = 'Error loading questions.';
+    document.getElementById('question').textContent = 'Error loading questions.';
     console.error(err);
   }
 }
@@ -28,11 +24,7 @@ function loadHistory() {
   if (stored) {
     fullHistory = JSON.parse(stored);
   } else {
-    // Create empty history for each question
-    fullHistory = questions.map(q => ({
-      id: q.id,
-      history: []
-    }));
+    fullHistory = questions.map(q => ({ id: q.id, history: [] }));
   }
 }
 
@@ -56,6 +48,7 @@ function displayQuestion() {
   answerInput.disabled = false;
   submitBtn.disabled = false;
   answerInput.focus();
+  state = "answering";
 }
 
 function checkAnswer() {
@@ -82,14 +75,15 @@ function checkAnswer() {
 
   answerInput.disabled = true;
   submitBtn.disabled = true;
+  nextBtn.disabled = false;
 
   if (currentIndex >= questions.length - 1) {
-    nextBtn.disabled = false;
     nextBtn.textContent = "Show Summary";
   } else {
-    nextBtn.disabled = false;
     nextBtn.textContent = "Next Question";
   }
+
+  state = "feedback";
 }
 
 function nextQuestion() {
@@ -111,12 +105,13 @@ function showSummary() {
   const container = document.querySelector('.container');
   container.innerHTML = summaryHTML + `<button id="restart">Start Again</button>`;
 
-  // Merge session results into history
   mergeSessionIntoHistory();
   saveHistory();
 
   document.getElementById('restart').addEventListener('click', restartQuiz);
   document.getElementById('exportResults').addEventListener('click', exportResults);
+
+  state = "summary";
 }
 
 function mergeSessionIntoHistory() {
@@ -166,23 +161,28 @@ function relinkElements() {
   restartBtn = document.getElementById('restart');
 
   submitBtn.addEventListener('click', checkAnswer);
-  answerInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      checkAnswer();
-    }
-  });
   nextBtn.addEventListener('click', nextQuestion);
   restartBtn.addEventListener('click', restartQuiz);
+
+  // Single Enter key listener
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // stop accidental form submits
+      if (state === "answering") {
+        checkAnswer();
+      } else if (state === "feedback") {
+        nextQuestion();
+      } else if (state === "summary") {
+        restartQuiz();
+        answerInput.focus();
+      }
+    }
+  });
 }
 
-loadQuestions();
-
-submitBtn.addEventListener('click', checkAnswer);
-answerInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    checkAnswer();
-  }
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  relinkElements();
+  loadQuestions();
 });
-nextBtn.addEventListener('click', nextQuestion);
-restartBtn.addEventListener('click', restartQuiz);
 
