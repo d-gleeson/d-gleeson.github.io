@@ -1,6 +1,7 @@
 let questions = [];
 let currentIndex = 0;
-let sessionAnswers = []; // [{ question, userAnswer, correctAnswer, isCorrect }]
+let sessionAnswers = []; // [{ id, correct, timestamp }]
+let fullHistory = []; // Loaded from localStorage or initialized empty
 
 const questionEl = document.getElementById('question');
 const answerInput = document.getElementById('answer');
@@ -9,17 +10,34 @@ const nextBtn = document.getElementById('nextQuestion');
 const feedbackEl = document.getElementById('feedback');
 const restartBtn = document.getElementById('restart');
 
-// Fetch questions from JSON
 async function loadQuestions() {
   try {
     const res = await fetch('data/questions.json');
     if (!res.ok) throw new Error('Failed to load questions.json');
     questions = await res.json();
+    loadHistory();
     startSession();
   } catch (err) {
     questionEl.textContent = 'Error loading questions.';
     console.error(err);
   }
+}
+
+function loadHistory() {
+  const stored = localStorage.getItem('quizHistory');
+  if (stored) {
+    fullHistory = JSON.parse(stored);
+  } else {
+    // Create empty history for each question
+    fullHistory = questions.map(q => ({
+      id: q.id,
+      history: []
+    }));
+  }
+}
+
+function saveHistory() {
+  localStorage.setItem('quizHistory', JSON.stringify(fullHistory));
 }
 
 function startSession() {
@@ -43,17 +61,15 @@ function displayQuestion() {
 function checkAnswer() {
   const userAnswer = answerInput.value.trim();
   const correctAnswer = questions[currentIndex].answer.trim();
-  
+
   if (userAnswer === '') return;
 
   const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
 
-  // Store result
   sessionAnswers[currentIndex] = {
-    question: questions[currentIndex].question,
-    userAnswer,
-    correctAnswer,
-    isCorrect
+    id: questions[currentIndex].id,
+    correct: isCorrect ? 1 : 0,
+    timestamp: new Date().toISOString()
   };
 
   if (isCorrect) {
@@ -64,11 +80,9 @@ function checkAnswer() {
     feedbackEl.style.color = 'red';
   }
 
-  // Disable further edits for this question
   answerInput.disabled = true;
   submitBtn.disabled = true;
 
-  // Last question check
   if (currentIndex >= questions.length - 1) {
     nextBtn.disabled = false;
     nextBtn.textContent = "Show Summary";
@@ -88,36 +102,43 @@ function nextQuestion() {
 }
 
 function showSummary() {
-  const correctCount = sessionAnswers.filter(a => a.isCorrect).length;
+  const correctCount = sessionAnswers.filter(a => a.correct === 1).length;
   const total = questions.length;
 
-  // Create summary HTML
   let summaryHTML = `<h3>Session Complete! ✅ ${correctCount} / ${total} correct.</h3>`;
-  summaryHTML += `<table border="1" cellpadding="5" cellspacing="0" style="margin-top:10px; border-collapse: collapse; width: 100%;">
-                    <tr>
-                      <th>Question</th>
-                      <th>Your Answer</th>
-                      <th>Correct Answer</th>
-                      <th>Result</th>
-                    </tr>`;
-  
-  sessionAnswers.forEach(entry => {
-    summaryHTML += `<tr>
-                      <td>${entry.question}</td>
-                      <td>${entry.userAnswer}</td>
-                      <td>${entry.correctAnswer}</td>
-                      <td style="text-align:center;">${entry.isCorrect ? '✅' : '❌'}</td>
-                    </tr>`;
-  });
+  summaryHTML += `<button id="exportResults">Export Results</button>`;
 
-  summaryHTML += `</table>`;
-
-  // Replace main container content
   const container = document.querySelector('.container');
   container.innerHTML = summaryHTML + `<button id="restart">Start Again</button>`;
 
-  // Add restart listener again (since we replaced HTML)
+  // Merge session results into history
+  mergeSessionIntoHistory();
+  saveHistory();
+
   document.getElementById('restart').addEventListener('click', restartQuiz);
+  document.getElementById('exportResults').addEventListener('click', exportResults);
+}
+
+function mergeSessionIntoHistory() {
+  sessionAnswers.forEach(result => {
+    const questionHistory = fullHistory.find(q => q.id === result.id);
+    if (questionHistory) {
+      questionHistory.history.push({
+        correct: result.correct,
+        timestamp: result.timestamp
+      });
+    }
+  });
+}
+
+function exportResults() {
+  const blob = new Blob([JSON.stringify(fullHistory, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `quiz_history_${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 function restartQuiz() {
@@ -132,10 +153,7 @@ function restartQuiz() {
     <p class="feedback" id="feedback"></p>
     <button id="restart">Start Again</button>
   `;
-
-  // Re-link elements
   relinkElements();
-
   startSession();
 }
 
@@ -157,10 +175,8 @@ function relinkElements() {
   restartBtn.addEventListener('click', restartQuiz);
 }
 
-// Init
 loadQuestions();
 
-// First link
 submitBtn.addEventListener('click', checkAnswer);
 answerInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {

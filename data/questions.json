@@ -11,8 +11,18 @@
   },
   {
     "id": 3,
+    "question": "Translate: learning French",
+    "answer": "ag foghlaim Fraincise"
+  },
+  {
+    "id": 4,
     "question": "Translate: the door of the school",
     "answer": "doras na scoile"
+  },
+  {
+    "id": 4,
+    "question": "Translate: winter weather",
+    "answer": "aimsir geimhridh"
   }
 ]
 
