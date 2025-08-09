@@ -1,6 +1,6 @@
 let questions = [];
 let currentIndex = 0;
-let sessionAnswers = []; // Tracks whether each answer was correct (true/false)
+let sessionAnswers = []; // [{ question, userAnswer, correctAnswer, isCorrect }]
 
 const questionEl = document.getElementById('question');
 const answerInput = document.getElementById('answer');
@@ -41,19 +41,26 @@ function displayQuestion() {
 }
 
 function checkAnswer() {
-  const userAnswer = answerInput.value.trim().toLowerCase();
-  const correctAnswer = questions[currentIndex].answer.trim().toLowerCase();
+  const userAnswer = answerInput.value.trim();
+  const correctAnswer = questions[currentIndex].answer.trim();
   
   if (userAnswer === '') return;
 
-  const isCorrect = userAnswer === correctAnswer;
-  sessionAnswers[currentIndex] = isCorrect;
+  const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+
+  // Store result
+  sessionAnswers[currentIndex] = {
+    question: questions[currentIndex].question,
+    userAnswer,
+    correctAnswer,
+    isCorrect
+  };
 
   if (isCorrect) {
-    feedbackEl.textContent = `✅ Correct! The answer is "${questions[currentIndex].answer}".`;
+    feedbackEl.textContent = `✅ Correct! The answer is "${correctAnswer}".`;
     feedbackEl.style.color = 'green';
   } else {
-    feedbackEl.textContent = `❌ Wrong. You said "${answerInput.value}", correct is "${questions[currentIndex].answer}".`;
+    feedbackEl.textContent = `❌ Wrong. You said "${userAnswer}", correct is "${correctAnswer}".`;
     feedbackEl.style.color = 'red';
   }
 
@@ -61,7 +68,7 @@ function checkAnswer() {
   answerInput.disabled = true;
   submitBtn.disabled = true;
 
-  // If last question → show summary button state
+  // Last question check
   if (currentIndex >= questions.length - 1) {
     nextBtn.disabled = false;
     nextBtn.textContent = "Show Summary";
@@ -81,24 +88,79 @@ function nextQuestion() {
 }
 
 function showSummary() {
-  const correctCount = sessionAnswers.filter(ans => ans).length;
+  const correctCount = sessionAnswers.filter(a => a.isCorrect).length;
   const total = questions.length;
-  questionEl.textContent = `Session Complete! ✅ ${correctCount} / ${total} correct.`;
-  answerInput.style.display = 'none';
-  submitBtn.style.display = 'none';
-  nextBtn.style.display = 'none';
-  feedbackEl.textContent = '';
+
+  // Create summary HTML
+  let summaryHTML = `<h3>Session Complete! ✅ ${correctCount} / ${total} correct.</h3>`;
+  summaryHTML += `<table border="1" cellpadding="5" cellspacing="0" style="margin-top:10px; border-collapse: collapse; width: 100%;">
+                    <tr>
+                      <th>Question</th>
+                      <th>Your Answer</th>
+                      <th>Correct Answer</th>
+                      <th>Result</th>
+                    </tr>`;
+  
+  sessionAnswers.forEach(entry => {
+    summaryHTML += `<tr>
+                      <td>${entry.question}</td>
+                      <td>${entry.userAnswer}</td>
+                      <td>${entry.correctAnswer}</td>
+                      <td style="text-align:center;">${entry.isCorrect ? '✅' : '❌'}</td>
+                    </tr>`;
+  });
+
+  summaryHTML += `</table>`;
+
+  // Replace main container content
+  const container = document.querySelector('.container');
+  container.innerHTML = summaryHTML + `<button id="restart">Start Again</button>`;
+
+  // Add restart listener again (since we replaced HTML)
+  document.getElementById('restart').addEventListener('click', restartQuiz);
 }
 
 function restartQuiz() {
-  answerInput.style.display = 'inline';
-  submitBtn.style.display = 'inline-block';
-  nextBtn.style.display = 'inline-block';
-  nextBtn.textContent = 'Next Question';
+  const container = document.querySelector('.container');
+  container.innerHTML = `
+    <h2 id="question">Loading...</h2>
+    <input type="text" id="answer" placeholder="Type your answer here"/>
+    <div>
+      <button id="submitAnswer">Enter</button>
+      <button id="nextQuestion">Next Question</button>
+    </div>
+    <p class="feedback" id="feedback"></p>
+    <button id="restart">Start Again</button>
+  `;
+
+  // Re-link elements
+  relinkElements();
+
   startSession();
 }
 
-// Event Listeners
+function relinkElements() {
+  questionEl = document.getElementById('question');
+  answerInput = document.getElementById('answer');
+  submitBtn = document.getElementById('submitAnswer');
+  nextBtn = document.getElementById('nextQuestion');
+  feedbackEl = document.getElementById('feedback');
+  restartBtn = document.getElementById('restart');
+
+  submitBtn.addEventListener('click', checkAnswer);
+  answerInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      checkAnswer();
+    }
+  });
+  nextBtn.addEventListener('click', nextQuestion);
+  restartBtn.addEventListener('click', restartQuiz);
+}
+
+// Init
+loadQuestions();
+
+// First link
 submitBtn.addEventListener('click', checkAnswer);
 answerInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
@@ -107,7 +169,4 @@ answerInput.addEventListener('keypress', (e) => {
 });
 nextBtn.addEventListener('click', nextQuestion);
 restartBtn.addEventListener('click', restartQuiz);
-
-// Init
-loadQuestions();
 

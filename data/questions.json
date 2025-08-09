@@ -1,13 +1,18 @@
 [
   {
     "id": 1,
-    "question": "What is the capital of France?",
-    "answer": "Paris"
+    "question": "Translate: the fisherman's boat",
+    "answer": "bad an iascaire"
   },
   {
     "id": 2,
-    "question": "Translate to English: 'Hola'",
-    "answer": "Hello"
+    "question": "Translate: making the meals",
+    "answer": "ag deanamh na mbeili"
+  },
+  {
+    "id": 3,
+    "question": "Translate: the door of the school",
+    "answer": "doras na scoile"
   }
 ]
 
