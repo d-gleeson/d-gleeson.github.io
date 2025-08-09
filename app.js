@@ -1,5 +1,6 @@
 let questions = [];
 let currentIndex = 0;
+let sessionAnswers = []; // Tracks whether each answer was correct (true/false)
 
 const questionEl = document.getElementById('question');
 const answerInput = document.getElementById('answer');
@@ -14,12 +15,17 @@ async function loadQuestions() {
     const res = await fetch('data/questions.json');
     if (!res.ok) throw new Error('Failed to load questions.json');
     questions = await res.json();
-    currentIndex = 0;
-    displayQuestion();
+    startSession();
   } catch (err) {
     questionEl.textContent = 'Error loading questions.';
     console.error(err);
   }
+}
+
+function startSession() {
+  currentIndex = 0;
+  sessionAnswers = [];
+  displayQuestion();
 }
 
 function displayQuestion() {
@@ -29,6 +35,8 @@ function displayQuestion() {
   answerInput.value = '';
   feedbackEl.textContent = '';
   nextBtn.disabled = true;
+  answerInput.disabled = false;
+  submitBtn.disabled = false;
   answerInput.focus();
 }
 
@@ -38,7 +46,10 @@ function checkAnswer() {
   
   if (userAnswer === '') return;
 
-  if (userAnswer === correctAnswer) {
+  const isCorrect = userAnswer === correctAnswer;
+  sessionAnswers[currentIndex] = isCorrect;
+
+  if (isCorrect) {
     feedbackEl.textContent = `✅ Correct! The answer is "${questions[currentIndex].answer}".`;
     feedbackEl.style.color = 'green';
   } else {
@@ -46,23 +57,45 @@ function checkAnswer() {
     feedbackEl.style.color = 'red';
   }
 
-  // Enable "Next" unless we're at the last question
-  nextBtn.disabled = (currentIndex >= questions.length - 1);
+  // Disable further edits for this question
+  answerInput.disabled = true;
+  submitBtn.disabled = true;
+
+  // If last question → show summary button state
+  if (currentIndex >= questions.length - 1) {
+    nextBtn.disabled = false;
+    nextBtn.textContent = "Show Summary";
+  } else {
+    nextBtn.disabled = false;
+    nextBtn.textContent = "Next Question";
+  }
 }
 
 function nextQuestion() {
   if (currentIndex < questions.length - 1) {
     currentIndex++;
     displayQuestion();
-  }
-  if (currentIndex >= questions.length - 1) {
-    nextBtn.disabled = true;
+  } else {
+    showSummary();
   }
 }
 
+function showSummary() {
+  const correctCount = sessionAnswers.filter(ans => ans).length;
+  const total = questions.length;
+  questionEl.textContent = `Session Complete! ✅ ${correctCount} / ${total} correct.`;
+  answerInput.style.display = 'none';
+  submitBtn.style.display = 'none';
+  nextBtn.style.display = 'none';
+  feedbackEl.textContent = '';
+}
+
 function restartQuiz() {
-  currentIndex = 0;
-  displayQuestion();
+  answerInput.style.display = 'inline';
+  submitBtn.style.display = 'inline-block';
+  nextBtn.style.display = 'inline-block';
+  nextBtn.textContent = 'Next Question';
+  startSession();
 }
 
 // Event Listeners
