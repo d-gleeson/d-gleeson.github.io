@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "question": "What is the capital of France?",
+    "answer": "Paris"
+  },
+  {
+    "id": 2,
+    "question": "Translate to English: 'Hola'",
+    "answer": "Hello"
+  }
+]
+

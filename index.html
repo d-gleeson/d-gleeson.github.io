@@ -1,3 +1,63 @@
-# Yo!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Language Learning App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 12px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
 
-Let's get started here
+  <div class="container">
+    <h2 id="question">Loading...</h2>
+    <input type="text" id="answer" placeholder="Type your answer here"/>
+    <div>
+      <button id="submitAnswer">Enter</button>
+      <button id="nextQuestion">Next Question</button>
+    </div>
+    <p class="feedback" id="feedback"></p>
+    <button id="restart">Start Again</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
