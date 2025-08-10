@@ -61,6 +61,7 @@ function checkAnswer() {
 
   sessionAnswers[currentIndex] = {
     id: questions[currentIndex].id,
+    userAnswer: userAnswer,
     correct: isCorrect ? 1 : 0,
     timestamp: new Date().toISOString()
   };
@@ -100,10 +101,46 @@ function showSummary() {
   const total = questions.length;
 
   let summaryHTML = `<h3>Session Complete! ✅ ${correctCount} / ${total} correct.</h3>`;
-  summaryHTML += `<button id="exportResults">Export Results</button>`;
+  
+  // Table header
+  summaryHTML += `
+    <table border="1" style="margin: 1em auto; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Your Answer</th>
+          <th>Correct Answer</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  // Table rows
+  sessionAnswers.forEach((result, i) => {
+    const q = questions.find(q => q.id === result.id);
+    const userAnswer = result.userAnswer || "(blank)";
+    const isCorrect = result.correct === 1;
+    summaryHTML += `
+      <tr>
+        <td>${q.question}</td>
+        <td>${userAnswer}</td>
+        <td>${q.answer}</td>
+        <td style="color:${isCorrect ? 'green' : 'red'};">
+          ${isCorrect ? '✔️' : '❌'}
+        </td>
+      </tr>
+    `;
+  });
+
+  summaryHTML += `</tbody></table>`;
+  
+  // Buttons
+  summaryHTML += `<button id="exportResults">Export Results</button>
+                  <button id="restart">Start Again</button>`;
 
   const container = document.querySelector('.container');
-  container.innerHTML = summaryHTML + `<button id="restart">Start Again</button>`;
+  container.innerHTML = summaryHTML;
 
   mergeSessionIntoHistory();
   saveHistory();
@@ -112,18 +149,6 @@ function showSummary() {
   document.getElementById('exportResults').addEventListener('click', exportResults);
 
   state = "summary";
-}
-
-function mergeSessionIntoHistory() {
-  sessionAnswers.forEach(result => {
-    const questionHistory = fullHistory.find(q => q.id === result.id);
-    if (questionHistory) {
-      questionHistory.history.push({
-        correct: result.correct,
-        timestamp: result.timestamp
-      });
-    }
-  });
 }
 
 function exportResults() {
