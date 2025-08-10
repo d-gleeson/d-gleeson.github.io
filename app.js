@@ -22,7 +22,7 @@ function startNewSession() {
   // Shuffle questions and pick max 20
   questions = [...allQuestions]
     .sort(() => Math.random() - 0.5)
-    .slice(0, Math.min(2, allQuestions.length));
+    .slice(0, Math.min(10, allQuestions.length));
 
   currentQuestionIndex = 0;
   sessionAnswers = [];
