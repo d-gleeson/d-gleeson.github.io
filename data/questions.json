@@ -2,12 +2,12 @@
   {
     "id": 1,
     "question": "Translate: the fisherman's boat",
-    "answer": "bad an iascaire"
+    "answer": "bád an iascaire"
   },
   {
     "id": 2,
     "question": "Translate: making the meals",
-    "answer": "ag deanamh na mbeili"
+    "answer": "ag déanamh na mbéilí"
   },
   {
     "id": 3,
@@ -23,6 +23,21 @@
     "id": 5,
     "question": "Translate: winter weather",
     "answer": "aimsir geimhridh"
+  },
+  {
+    "id": 6,
+    "question": "Translate: the middle of the day",
+    "answer": "lár an lae"
+  },
+  {
+    "id": 7,
+    "question": "Translate: the taste of the meat",
+    "answer": "blas na feola"
+  },
+  {
+    "id": 8,
+    "question": "Translate: the light of the moon",
+    "answer": "solas na gealaí"
   }
 ]
 

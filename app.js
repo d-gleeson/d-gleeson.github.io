@@ -1,3 +1,4 @@
+let allQuestions = [];
 let questions = [];
 let currentQuestionIndex = 0;
 let sessionAnswers = [];
@@ -8,12 +9,24 @@ async function loadQuestions() {
   try {
     const res = await fetch('data/questions.json');
     if (!res.ok) throw new Error("Failed to load");
-    questions = await res.json();
-    showQuestion();
+    allQuestions = await res.json();
+
+    startNewSession();
   } catch (err) {
     document.querySelector('.container').innerHTML = "<p>Error loading questions.</p>";
     console.error(err);
   }
+}
+
+function startNewSession() {
+  // Shuffle questions and pick max 20
+  questions = [...allQuestions]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, Math.min(2, allQuestions.length));
+
+  currentQuestionIndex = 0;
+  sessionAnswers = [];
+  showQuestion();
 }
 
 // Highlight only wrong characters in user's answer
@@ -148,9 +161,7 @@ function showSummary() {
 }
 
 function restartQuiz() {
-  currentQuestionIndex = 0;
-  sessionAnswers = [];
-  showQuestion();
+  startNewSession();
 }
 
 function exportResults() {
