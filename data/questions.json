@@ -38,6 +38,36 @@
     "id": 8,
     "question": "Translate: the light of the moon",
     "answer": "solas na gealaí"
+  },
+  {
+    "id": 9,
+    "question": "Translate: my friend's car",
+    "answer": "carr mo charad"
+  },
+  {
+    "id": 10,
+    "question": "Translate: a rainy day",
+    "answer": "lá báistí"
+  },
+  {
+    "id": 11,
+    "question": "Translate: after the dinner",
+    "answer": "tar eis an dinnéar"
+  },
+  {
+    "id": 12,
+    "question": "Translate: the priest of the parish",
+    "answer": "sagart an pharóiste"
+  },
+  {
+    "id": 13,
+    "question": "Translate: the meaning of the words",
+    "answer": "ciall na bhfocal"
+  },
+  {
+    "id": 14,
+    "question": "Translate: the beginning of the year",
+    "answer": "tús na bliana"
   }
 ]
 
