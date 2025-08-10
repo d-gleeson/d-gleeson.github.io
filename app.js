@@ -96,6 +96,33 @@ function nextQuestion() {
   }
 }
 
+function highlightDifferences(userAnswer, correctAnswer) {
+  let highlightedUser = '';
+  let highlightedCorrect = '';
+
+  const maxLen = Math.max(userAnswer.length, correctAnswer.length);
+
+  for (let i = 0; i < maxLen; i++) {
+    const userChar = userAnswer[i] || '';
+    const correctChar = correctAnswer[i] || '';
+
+    if (userChar !== correctChar) {
+      if (userChar) {
+        highlightedUser += `<span style="background-color:#ffcccc;">${userChar}</span>`;
+      }
+      if (correctChar) {
+        highlightedCorrect += `<span style="background-color:#ccffcc;">${correctChar}</span>`;
+      }
+    } else {
+      highlightedUser += userChar;
+      highlightedCorrect += correctChar;
+    }
+  }
+
+  return { highlightedUser, highlightedCorrect };
+}
+
+
 function showSummary() {
   const correctCount = sessionAnswers.filter(a => a.correct === 1).length;
   const total = questions.length;
@@ -117,15 +144,25 @@ function showSummary() {
   `;
 
   // Table rows
-  sessionAnswers.forEach((result, i) => {
+  sessionAnswers.forEach((result) => {
     const q = questions.find(q => q.id === result.id);
     const userAnswer = result.userAnswer || "(blank)";
     const isCorrect = result.correct === 1;
+
+    let displayUser = userAnswer;
+    let displayCorrect = q.answer;
+
+    if (!isCorrect) {
+      const diff = highlightDifferences(userAnswer, q.answer);
+      displayUser = diff.highlightedUser;
+      displayCorrect = diff.highlightedCorrect;
+    }
+
     summaryHTML += `
       <tr>
         <td>${q.question}</td>
-        <td>${userAnswer}</td>
-        <td>${q.answer}</td>
+        <td>${displayUser}</td>
+        <td>${displayCorrect}</td>
         <td style="color:${isCorrect ? 'green' : 'red'};">
           ${isCorrect ? '✔️' : '❌'}
         </td>
