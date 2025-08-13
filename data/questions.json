@@ -52,7 +52,7 @@
   {
     "id": 11,
     "question": "Translate: after the dinner",
-    "answer": "tar eis an dinnéar"
+    "answer": "tar éis an dinnéir"
   },
   {
     "id": 12,
@@ -68,6 +68,36 @@
     "id": 14,
     "question": "Translate: the beginning of the year",
     "answer": "tús na bliana"
+  },
+  {
+    "id": 15,
+    "question": "Translate: for the sake of the nation",
+    "answer": "ar son an náisíuin"
+  },
+  {
+    "id": 16,
+    "question": "Translate: the people of the Gaeltacht",
+    "answer": "muintir na Gaeltachta"
+  },
+  {
+    "id": 17,
+    "question": "Translate: in front of the shop",
+    "answer": "os comhair an tsiopa"
+  },
+  {
+    "id": 18,
+    "question": "Translate: cleaning the house",
+    "answer": "ag glanadh an tí"
+  },
+  {
+    "id": 19,
+    "question": "Translate: the boy's sister",
+    "answer": "deirfiúr an bhuachalla"
+  },
+  {
+    "id": 20,
+    "question": "Translate: milking the cow",
+    "answer": "ag bleán na bó"
   }
 ]
 
