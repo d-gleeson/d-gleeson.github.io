@@ -40,7 +40,7 @@ function highlightDifferences(userAnswer, correctAnswer) {
 
     if (userChar !== correctChar) {
       if (userChar) {
-        highlightedUser += `<span style="background-color:#ffcccc;">${userChar}</span>`;
+        highlightedUser += `<span class="char-wrong">${userChar}</span>`;
       }
     } else {
       highlightedUser += userChar;
@@ -114,7 +114,7 @@ function showSummary() {
   let summaryHTML = `<h3>Session Complete! ✅ ${correctCount} / ${total} correct.</h3>`;
   
   summaryHTML += `
-    <table border="1" style="margin: 1em auto; border-collapse: collapse;">
+    <table>
       <thead>
         <tr>
           <th>Question</th>
@@ -145,7 +145,7 @@ function showSummary() {
         <td>${q.question}</td>
         <td>${displayUser}</td>
         <td>${displayCorrect}</td>
-        <td style="color:${isCorrect ? 'green' : 'red'};">${isCorrect ? '✔️' : '❌'}</td>
+        <td class="${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✔️' : '❌'}</td>
         ${infoCell}
       </tr>
     `;
