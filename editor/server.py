@@ -36,7 +36,7 @@ class Handler(SimpleHTTPRequestHandler):
 
             data.append(new_data)
             with open(DATA_FILE, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=2)
+                json.dump(data, f, indent=2, ensure_ascii=False)
 
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
