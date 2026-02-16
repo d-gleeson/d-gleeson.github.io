@@ -19,7 +19,7 @@ async function loadQuestions() {
 }
 
 function startNewSession() {
-  // Shuffle questions and pick max 20
+  // Shuffle questions and pick max 10
   questions = [...allQuestions]
     .sort(() => Math.random() - 0.5)
     .slice(0, Math.min(10, allQuestions.length));
