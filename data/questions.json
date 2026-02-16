@@ -87,6 +87,42 @@
     "question": "Translate: the beginning of the year",
     "answer": "tús na bliana",
     "source": "NS.BI.6.7"
+  },
+  {
+    "id": 15,
+    "question": "Translate: for the sake of the nation",
+    "answer": "ar son an náisíuin",
+    "source": "NS.BI.6.7"
+  },
+  {
+    "id": 16,
+    "question": "Translate: the people of the Gaeltacht",
+    "answer": "muintir na Gaeltachta",
+    "source": "NS.BI.6.7"
+  },
+  {
+    "id": 17,
+    "question": "Translate: in front of the shop",
+    "answer": "os comhair an tsiopa",
+    "source": "NS.BI.6.7"
+  },
+  {
+    "id": 18,
+    "question": "Translate: cleaning the house",
+    "answer": "ag glanadh an tí",
+    "source": "NS.BI.6.7"
+  },
+  {
+    "id": 19,
+    "question": "Translate: the boy's sister",
+    "answer": "deirfiúr an bhuachalla",
+    "source": "NS.BI.6.7"
+  },
+  {
+    "id": 20,
+    "question": "Translate: milking the cow",
+    "answer": "ag bleán na bó",
+    "source": "NS.BI.6.7"
   }
 ]
 
