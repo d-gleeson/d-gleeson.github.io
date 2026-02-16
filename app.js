@@ -77,21 +77,25 @@ function submitAnswer() {
     userAnswer
   });
 
-  showAnswer(isCorrect, userAnswer, q.answer);
+  showAnswer(isCorrect, userAnswer, q.answer, q.explanation);
 }
 
-function showAnswer(isCorrect, userAnswer, correctAnswer) {
+function showAnswer(isCorrect, userAnswer, correctAnswer, explanation) {
   state = "answer";
   const container = document.querySelector('.container');
+  const explanationBtn = (!isCorrect && explanation)
+    ? ` <span class="explanation-btn" data-explanation="${explanation}">?</span>`
+    : '';
   container.innerHTML = `
     <h3>${isCorrect ? "✅ Correct!" : "❌ Wrong!"}</h3>
     <p><strong>Your Answer:</strong> ${userAnswer}</p>
-    <p><strong>Correct Answer:</strong> ${correctAnswer}</p>
+    <p><strong>Correct Answer:</strong> ${correctAnswer}${explanationBtn}</p>
     <button id="nextBtn">${currentQuestionIndex < questions.length - 1 ? "Next Question" : "View Summary"}</button>
     <button id="restart">Start Again</button>
   `;
   document.getElementById('nextBtn').addEventListener('click', nextQuestion);
   document.getElementById('restart').addEventListener('click', restartQuiz);
+  attachExplanationTooltips();
 }
 
 function nextQuestion() {
@@ -117,6 +121,7 @@ function showSummary() {
           <th>Your Answer</th>
           <th>Correct Answer</th>
           <th>Result</th>
+          <th>Info</th>
         </tr>
       </thead>
       <tbody>
@@ -132,12 +137,16 @@ function showSummary() {
       displayUser = highlightDifferences(displayUser, displayCorrect);
     }
 
+    const infoCell = q.explanation
+      ? `<td><span class="explanation-btn" data-explanation="${q.explanation}">?</span></td>`
+      : '<td></td>';
     summaryHTML += `
       <tr>
         <td>${q.question}</td>
         <td>${displayUser}</td>
         <td>${displayCorrect}</td>
         <td style="color:${isCorrect ? 'green' : 'red'};">${isCorrect ? '✔️' : '❌'}</td>
+        ${infoCell}
       </tr>
     `;
   });
@@ -156,6 +165,7 @@ function showSummary() {
 
   document.getElementById('restart').addEventListener('click', restartQuiz);
   document.getElementById('exportResults').addEventListener('click', exportResults);
+  attachExplanationTooltips();
 
   state = "summary";
 }
@@ -200,6 +210,52 @@ function loadHistory() {
   if (stored) {
     historyData = JSON.parse(stored);
   }
+}
+
+function attachExplanationTooltips() {
+  let activeTooltip = null;
+
+  function removeTooltip() {
+    if (activeTooltip) {
+      activeTooltip.remove();
+      activeTooltip = null;
+    }
+  }
+
+  function showTooltip(btn) {
+    removeTooltip();
+    const text = btn.getAttribute('data-explanation');
+    const tooltip = document.createElement('div');
+    tooltip.className = 'explanation-tooltip';
+    tooltip.textContent = text;
+    document.body.appendChild(tooltip);
+
+    const rect = btn.getBoundingClientRect();
+    const tooltipH = tooltip.offsetHeight;
+    const spaceBelow = window.innerHeight - rect.bottom;
+    if (spaceBelow < tooltipH + 8) {
+      tooltip.style.top = (rect.top - tooltipH - 6) + 'px';
+    } else {
+      tooltip.style.top = (rect.bottom + 6) + 'px';
+    }
+    tooltip.style.left = Math.min(rect.left, window.innerWidth - 240) + 'px';
+    activeTooltip = tooltip;
+  }
+
+  document.querySelectorAll('.explanation-btn').forEach(btn => {
+    btn.addEventListener('mouseenter', () => showTooltip(btn));
+    btn.addEventListener('mouseleave', removeTooltip);
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (activeTooltip) {
+        removeTooltip();
+      } else {
+        showTooltip(btn);
+      }
+    });
+  });
+
+  document.addEventListener('click', removeTooltip, { once: true });
 }
 
 // Keyboard navigation

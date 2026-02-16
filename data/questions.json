@@ -2,52 +2,68 @@
   {
     "id": 1,
     "question": "Translate: the fisherman's boat",
-    "answer": "bád an iascaire"
+    "answer": "bád an iascaire",
+    "source": "NS.BI.6.7",
+    "explanation" : "Iascaire is 4th declension and does not change in the genitive"
   },
   {
     "id": 2,
     "question": "Translate: making the meals",
-    "answer": "ag déanamh na mbéilí"
+    "answer": "ag déanamh na mbéilí",
+    "source": "NS.BI.6.7",
+    "explanation" : "In the genitive plural all nouns are eclipsed after na"
   },
   {
     "id": 3,
     "question": "Translate: learning French",
-    "answer": "ag foghlaim Fraincise"
+    "answer": "ag foghlaim Fraincise",
+    "source": "NS.BI.6.7"
   },
   {
     "id": 4,
     "question": "Translate: the door of the school",
-    "answer": "doras na scoile"
+    "answer": "doras na scoile",
+    "source": "NS.BI.6.7",
+    "explanation" : "The feminine singular genitive article is na"
   },
   {
     "id": 5,
     "question": "Translate: winter weather",
-    "answer": "aimsir geimhridh"
+    "answer": "aimsir geimhridh",
+    "source": "NS.BI.6.7"
   },
   {
     "id": 6,
     "question": "Translate: the middle of the day",
-    "answer": "lár an lae"
+    "answer": "lár an lae",
+    "source": "NS.BI.6.7",
+    "explanation" : "lae is the genitive from of lá (m)"
   },
   {
     "id": 7,
     "question": "Translate: the taste of the meat",
-    "answer": "blas na feola"
+    "answer": "blas na feola",
+    "source": "NS.BI.6.7",
+    "explanation" : "Feoil is 3rd declension, final slender consonants are broadened and an a is added"
   },
   {
     "id": 8,
     "question": "Translate: the light of the moon",
-    "answer": "solas na gealaí"
+    "answer": "solas na gealaí",
+    "source": "NS.BI.6.7",
+    "explanation": "gealach (f) is second declension,The feminine singular genitive article is na"
   },
   {
     "id": 9,
     "question": "Translate: my friend's car",
-    "answer": "carr mo charad"
+    "answer": "carr mo charad",
+    "source": "NS.BI.6.7"
   },
   {
     "id": 10,
     "question": "Translate: a rainy day",
-    "answer": "lá báistí"
+    "answer": "lá báistí",
+    "source": "NS.BI.6.7"
   },
   {
     "id": 11,
@@ -57,47 +73,20 @@
   {
     "id": 12,
     "question": "Translate: the priest of the parish",
-    "answer": "sagart an pharóiste"
+    "answer": "sagart an pharóiste",
+    "source": "NS.BI.6.7"
   },
   {
     "id": 13,
     "question": "Translate: the meaning of the words",
-    "answer": "ciall na bhfocal"
+    "answer": "ciall na bhfocal",
+    "source": "NS.BI.6.7"
   },
   {
     "id": 14,
     "question": "Translate: the beginning of the year",
-    "answer": "tús na bliana"
-  },
-  {
-    "id": 15,
-    "question": "Translate: for the sake of the nation",
-    "answer": "ar son an náisíuin"
-  },
-  {
-    "id": 16,
-    "question": "Translate: the people of the Gaeltacht",
-    "answer": "muintir na Gaeltachta"
-  },
-  {
-    "id": 17,
-    "question": "Translate: in front of the shop",
-    "answer": "os comhair an tsiopa"
-  },
-  {
-    "id": 18,
-    "question": "Translate: cleaning the house",
-    "answer": "ag glanadh an tí"
-  },
-  {
-    "id": 19,
-    "question": "Translate: the boy's sister",
-    "answer": "deirfiúr an bhuachalla"
-  },
-  {
-    "id": 20,
-    "question": "Translate: milking the cow",
-    "answer": "ag bleán na bó"
+    "answer": "tús na bliana",
+    "source": "NS.BI.6.7"
   }
 ]
 
