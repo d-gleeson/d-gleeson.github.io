@@ -1,3 +1,5 @@
+const SESSION_LENGTH = 10;
+
 let allQuestions = [];
 let questions = [];
 let currentQuestionIndex = 0;
@@ -22,7 +24,7 @@ function startNewSession() {
   // Shuffle questions and pick max 10
   questions = [...allQuestions]
     .sort(() => Math.random() - 0.5)
-    .slice(0, Math.min(10, allQuestions.length));
+    .slice(0, Math.min(SESSION_LENGTH, allQuestions.length));
 
   currentQuestionIndex = 0;
   sessionAnswers = [];
