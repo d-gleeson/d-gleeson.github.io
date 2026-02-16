@@ -12,9 +12,11 @@ Hosted on GitHub Pages. No build step — vanilla HTML/CSS/JS only. Push to `mas
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Main quiz UI — contains all CSS in `<style>` block; references `app.js` |
+| `index.html` | Main quiz UI — minimal skeleton (container div + script ref); no inline CSS |
+| `style.css` | All application styles |
 | `app.js` | All quiz logic — question loading, answer comparison, state machine, history |
 | `data/questions.json` | Question database (20 questions, read at runtime via fetch) |
+| `.gitignore` | Excludes Python `__pycache__/` and `.DS_Store` |
 | `editor/index.html` | Minimal form UI for adding new questions |
 | `editor/editor.js` | Builds form dynamically from questions.json schema; POSTs new records |
 | `editor/server.py` | Local Python server; must be running to use the editor |
@@ -33,7 +35,7 @@ Hosted on GitHub Pages. No build step — vanilla HTML/CSS/JS only. Push to `mas
 }
 ```
 
-Optional fields should be omitted or set to `null` (not empty string). The `?` tooltip only appears when `explanation` is a non-null, non-empty value (`app.js` lines 86, 140).
+Optional fields should be omitted or set to `null` (not empty string). The `?` tooltip only appears when `explanation` is a non-null, non-empty value (guarded in `app.js` in both the answer view and the summary table).
 
 ---
 
@@ -67,7 +69,7 @@ python3 editor/server.py
 ## Conventions
 
 - No frameworks, no npm, no build step
-- CSS lives in `<style>` block in `index.html`
+- CSS lives in `style.css`; `index.html` is a minimal skeleton
 - JS uses vanilla DOM APIs, no modules
 - All user-visible text is hardcoded in JS (no i18n)
 - GitHub Pages deployment: push to `master` branch
